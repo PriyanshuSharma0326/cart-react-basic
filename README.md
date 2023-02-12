@@ -24,6 +24,12 @@ Install dependencies
   npm i react react-dom react-router-dom react-scripts web-vitals phosphor-react
 ```
 
+Add Tailwind to your project
+
+```bash
+  https://tailwindcss.com/docs/installation/framework-guides
+```
+
 Start the server
 
 ```bash
