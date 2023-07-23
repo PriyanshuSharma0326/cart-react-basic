@@ -3,18 +3,18 @@ import { PRODUCTS } from '../Products';
 
 export const ShopContext = createContext();
 
-const getDefaultCart = () => {
+const getDefaultCart = (initCount) => {
     let cart = {};
 
     for (let i = 1; i < PRODUCTS.length + 1; i++) {
-        cart[i] = 0;
+        cart[i] = initCount;
     }
 
     return cart;
 }
 
 export const ShopContextProvider = ({ children }) => {
-    const [cartItems, setCartItems] = useState(getDefaultCart());
+    const [cartItems, setCartItems] = useState(getDefaultCart(1));
 
     const getTotalCartAmount = () => {
         let totalAmount = 0;
@@ -42,7 +42,11 @@ export const ShopContextProvider = ({ children }) => {
         setCartItems((prev) => ({...prev, [itemID]: newAmount}))
     }
 
-    const contextvalue = { cartItems, addToCart, removeFromCart, updateCartItemCount, getTotalCartAmount };
+    const clearCart = () => {
+        setCartItems(getDefaultCart(0));
+    }
+
+    const contextvalue = { cartItems, addToCart, removeFromCart, updateCartItemCount, getTotalCartAmount, clearCart };
 
     return (
         <ShopContext.Provider value={contextvalue}>

@@ -1,15 +1,12 @@
 import React, { useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { ShopContext } from '../../context/ShopContext';
 import { PRODUCTS } from '../../Products';
 import CartItem from './CartItem';
 
 export default function Cart() {
-    const { cartItems, getTotalCartAmount } = useContext(ShopContext);
+    const { cartItems, getTotalCartAmount, clearCart } = useContext(ShopContext);
 
     const subtotal = getTotalCartAmount();
-
-    const navigate = useNavigate();
 
     return (
         <div className='Cart'>
@@ -39,8 +36,9 @@ export default function Cart() {
                     <div className='CartButtons text-center'>
                         <button className='
                         mt-4 text-[16px] text-white bg-[#131313] border-[2px] border-solid border-[#131313] min-w-[100px] px-[10px] py-[5px] rounded-md hover:bg-white hover:text-[#131313] hover:cursor-pointer'
-                        onClick={() => navigate('/')}>
-                        Continue Shopping</button>
+                            onClick={() => clearCart()}
+                        >
+                        Clear Cart</button>
                         
                         <button className='
                         mt-4 text-[16px] text-white bg-[#131313] border-[2px] border-solid border-[#131313] min-w-[100px] px-[10px] py-[5px] rounded-md hover:bg-white hover:text-[#131313] hover:cursor-pointer ml-8'>
